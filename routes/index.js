@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var birdsController = require('../controllers/bridsController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,9 +11,9 @@ router.get('/birds', function(req, res, next) {
   res.render('birds', { title: 'Birds' });
 });
 
-router.get('/create', function(req, res, next) {
-  res.render('create', { title: 'Create' });
-});
+router.get('/create', birdsController.get_birds_create);
+
+router.post('/birds', birdsController.post_birds_create);
 
 router.get('/users', function(req, res, next) {
   res.render('users', { title: 'Users' });
