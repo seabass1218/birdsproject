@@ -5,17 +5,20 @@
   </head>
   <body>
     <% include ./partials/navbar %>
+   
+    <div class="container">
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
     <% include ./partials/scripts %>
 
-    <a href="/users">Users</a>
+   <h1> <a href="/users" class="btn btn-outline-primary">Users</a>
     <div>
-        <a href="settings/meds">Meds</a>
+        <a href="settings/meds" class="btn btn-outline-primary">Meds</a>
     </div>
     <div>
-        <a href="settings/food">food types</a>
+        <a href="settings/food" class="btn btn-outline-primary">food types</a>
     </div>
+  </div>
   </body>
 </html>
