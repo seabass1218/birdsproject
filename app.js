@@ -8,7 +8,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var settingsRouter=require('./routes/settings');
 
+require('dotenv').config({path: __dirname + '/.env'});
+const mongoose = require('mongoose');
+
 var app = express();
+
+mongoose.connect(process.env['DATABASE'], {useNewUrlParser: true, useUnifiedTopology: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
