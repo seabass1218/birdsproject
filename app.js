@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var settingsRouter=require('./routes/settings');
+var animalsRouter = require ('./routes/animals');
 
 require('dotenv').config({path: __dirname + '/.env'});
 const mongoose = require('mongoose');
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/settings', settingsRouter);
 app.use('/users', usersRouter);
+app.use('/animals', animalsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

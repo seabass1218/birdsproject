@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var birdsController = require('../controllers/bridsController');
+var birdsController = require('../controllers/birdsController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
