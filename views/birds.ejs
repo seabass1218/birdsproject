@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ./partials/header %>
-  </head>
-  <body>
-    <% include ./partials/navbar %>
 
-    <div class="container">
-        <h1>Birds</h1>
-     
-        <a href="/create" class="btn btn-primary">+ Create Bird</a>
-       
-       </div>
+<head>
+  <% include ./partials/header %>
+</head>
 
-    <% include ./partials/scripts %>
-  </body>
+<body>
+  <% include ./partials/navbar %>
+
+  <div class="container">
+    <h1>Birds</h1>
+
+    <a href="/create" class="btn btn-primary">+ Create Bird</a>
+
+    <table class="table table-bordered table-striped">
+      <% for(var i=0; i < data.length; i++) { %>
+      <tr>
+        <td><%=data[i].species%></td>
+        <td><%=data[i].nickName%></td>
+        <td><%=data[i].enabled%></td>
+      </tr>
+      <% } %>
+    </table>
+
+  </div>
+
+  <% include ./partials/scripts %>
+</body>
+
 </html>

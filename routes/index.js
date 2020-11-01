@@ -7,9 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
-router.get('/birds', function(req, res, next) {
-  res.render('birds', { title: 'Birds' });
-});
+router.get('/birds', birdsController.get_birds);
 
 router.get('/create', birdsController.get_birds_create);
 
