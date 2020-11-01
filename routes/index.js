@@ -13,6 +13,12 @@ router.get('/create', birdsController.get_birds_create);
 
 router.post('/birds', birdsController.post_birds_create);
 
+router.get('/update', birdsController.get_update);
+
+router.post('/update', birdsController.post_update);
+
+router.get('/delete', birdsController.get_delete);
+
 router.get('/users', function(req, res, next) {
   res.render('users', { title: 'Users' });
 });
