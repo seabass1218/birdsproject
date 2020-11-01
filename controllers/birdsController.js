@@ -5,7 +5,7 @@ exports.get_birds = function(req,res) {
         if (err) {
             console.log(err);
         } else {
-            res.render('birds', { title: 'Birds' }, {data: animals});
+            res.render('birds', {data: animals});
         }
     })
 
