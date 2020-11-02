@@ -1,36 +1,19 @@
 var express = require('express');
 var router = express.Router();
+var settingsController = require('../controllers/settingsController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('settings', { title: 'settings' });
-});
+/* GET settings page. */
+router.get('/', settingsController.get_settings_index);
 
-/* GET home page. */
-router.get('/birds', function(req, res, next) {
-    res.render('index', { title: 'birds' });
-  });
+/* GET specific settings pages. */
+router.get('/meds', settingsController.get_meds);
 
-/* GET home page. */
-router.get('/meds', function(req, res, next) {
-    res.render('./medicine/meds', { title: 'meds' });
-  });
+router.get('/meds/create', settingsController.get_meds_create);
 
-router.get('/meds/create', function(req, res, next) {
-    res.render('./medicine/createMeds', { title: 'meds' });
-  }); 
+router.get('/users/create', settingsController.get_users_create);
 
-router.get('/users/create', function(req, res, next) {
-    res.render('createUsers', { title: 'meds' });
-  }); 
+router.get('/food', settingsController.get_food);
 
-router.get('/food/create', function(req, res, next) {
-    res.render('./food/createFood', { title: 'meds' });
-  }); 
-
-router.get('/food', function(req, res, next) {
-    res.render('./food/food', { title: 'food' });
-  });
-
+router.get('/food/create', settingsController.get_food_create);
 
 module.exports = router;

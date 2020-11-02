@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../partials/header %>
+    <%- include('../partials/header', {title: 'food'}); %>
   </head>
   <body>
     <% include ../partials/navbar %>
@@ -10,10 +10,37 @@
         <h1>Food</h1>
      
         <a href="/settings/food/create" class="btn btn-primary">+ Add Food</a>
-        <h2>Display food here</h2>
+        
+        <table id="foodTable" class="table table-bordered table-striped">
+
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+    
+          <% for(var i=0; i < data.length; i++) { %>
+          <tr>
+            <td><%=data[i].name%></td>
+            <td><a href="/update?id=<%= data[i]._id %>">Update</a> |
+              <a href="/delete?id=<%= data[i]._id %>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
+          </tr>
+          <% } %>
+        </table>
+    
+      </div>
        
        </div>
 
     <% include ../partials/scripts %>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#foodTable').DataTable({
+          responsive: true
+        });
+      });
+    </script>
   </body>
 </html>
