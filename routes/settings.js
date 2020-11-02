@@ -13,11 +13,11 @@ router.get('/birds', function(req, res, next) {
 
 /* GET home page. */
 router.get('/meds', function(req, res, next) {
-    res.render('meds', { title: 'meds' });
+    res.render('./medicine/meds', { title: 'meds' });
   });
 
 router.get('/meds/create', function(req, res, next) {
-    res.render('createMeds', { title: 'meds' });
+    res.render('./medicine/createMeds', { title: 'meds' });
   }); 
 
 router.get('/users/create', function(req, res, next) {
@@ -25,11 +25,11 @@ router.get('/users/create', function(req, res, next) {
   }); 
 
 router.get('/food/create', function(req, res, next) {
-    res.render('createFood', { title: 'meds' });
+    res.render('./food/createFood', { title: 'meds' });
   }); 
 
 router.get('/food', function(req, res, next) {
-    res.render('food', { title: 'food' });
+    res.render('./food/food', { title: 'food' });
   });
 
 

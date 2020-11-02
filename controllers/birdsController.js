@@ -1,5 +1,9 @@
 const Animal = require('../models/animal');
 
+exports.get_index = function(req,res) {
+  res.render('index', { title: 'Home' });
+}
+
 exports.get_birds = function(req,res) {
     Animal.find({}, function(err, animals) {
         if (err) {
