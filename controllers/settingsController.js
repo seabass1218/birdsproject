@@ -40,7 +40,7 @@ exports.get_food_create = function(req, res) {
 exports.post_food_create = function(req,res) {
 
     let newFood = new Food({ 
-        name: req.body.food
+        name: req.body.Food
     }); 
     
     newFood.save(function (err) {
@@ -49,8 +49,24 @@ exports.post_food_create = function(req,res) {
             console.error(err);       
         } else {            
             // saved!
-            res.redirect('/food');        
+            res.redirect('./food');
         }    
     });
 
+}
+
+exports.post_medicine_create = function(req, res) {
+    let newMedicine = new Medicine({
+        name: req.body.Medicine
+    });
+
+    newMedicine.save(function (err) {
+        if (err) {
+            //handle error
+            console.error(err);
+        } else {
+            //saved!
+            res.redirect('./meds');
+        }
+    });
 }

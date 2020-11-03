@@ -10,10 +10,14 @@ router.get('/meds', settingsController.get_meds);
 
 router.get('/meds/create', settingsController.get_meds_create);
 
+router.post('/meds', settingsController.post_medicine_create);
+
 router.get('/users/create', settingsController.get_users_create);
 
 router.get('/food', settingsController.get_food);
 
 router.get('/food/create', settingsController.get_food_create);
+
+router.post('/food', settingsController.post_food_create);
 
 module.exports = router;
