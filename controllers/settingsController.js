@@ -70,3 +70,77 @@ exports.post_medicine_create = function(req, res) {
         }
     });
 }
+
+exports.get_food_update = function(req, res) {
+    Food.findOne({_id: req.query.id}, function(err, foods) {
+      if (err) {
+        // handle error
+      } else {
+        console.log(foods);
+        res.render('./food/updateFood', {data: foods});
+      }
+    });
+  };
+
+  exports.post_food_update = function(req, res) {
+    const updateData = {
+      name: req.body.Food
+    };
+  
+    Food.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        res.redirect('./food');
+      }
+    });
+  };
+
+  exports.get_meds_update = function(req, res) {
+    Medicine.findOne({_id: req.query.id}, function(err, medicines) {
+      if (err) {
+        // handle error
+      } else {
+        console.log(medicines);
+        res.render('./medicine/updateMeds', {data: medicines});
+      }
+    });
+  };
+
+  exports.post_meds_update = function(req, res) {
+    const updateData = {
+      name: req.body.Medicine
+    };
+  
+    Animal.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        res.redirect('./meds');
+      }
+    });
+  };
+
+  exports.get_food_delete = function(req, res) {
+    Food.findOneAndDelete({_id: req.query.id}, function(err) {
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        res.redirect('/settings/food');
+      }
+    });
+  };
+
+  exports.get_meds_delete = function(req, res) {
+    Medicine.findOneAndDelete({_id: req.query.id}, function(err) {
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        res.redirect('/settings/meds');
+      }
+    });
+  };
