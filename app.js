@@ -1,23 +1,42 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var settingsRouter=require('./routes/settings');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const  settingsRouter=require('./routes/settings');
 
-require('dotenv').config({path: __dirname + '/.env'});
+
+const passport = require('passport');
+const flash    = require('connect-flash');
+const bodyParser = require('body-parser');
+
+
 const mongoose = require('mongoose');
 
-var app = express();
+require('dotenv').config({path: __dirname + '/.env'});
+
+
+const app = express();
 
 mongoose.connect(process.env['DATABASE'], {useNewUrlParser: true, useUnifiedTopology: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
+app.use(bodyParser.json());
+const session = require('express-session');
+
+
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
