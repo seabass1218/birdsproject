@@ -31,12 +31,22 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(bodyParser.json());
-const session = require('express-session');
+const session = require('express-session'); 
 
+app.use(session({
+  secret: 'devkey',
+  resave: true,
+  saveUninitialized: true,
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-
-
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
