@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const  settingsRouter=require('./routes/settings');
+const accountsRouter = require('./routes/accounts');
 
 
 const passport = require('passport');
@@ -19,7 +20,7 @@ const mongoose = require('mongoose');
 require('dotenv').config({path: __dirname + '/.env'});
 
 
-const app = express();
+const app = express()
 
 mongoose.connect(process.env['DATABASE'], {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -31,7 +32,8 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(bodyParser.json());
-const session = require('express-session'); 
+const session = require('express-session');
+require('./config/passport')(passport);
 
 app.use(session({
   secret: 'devkey',
@@ -57,6 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/settings', settingsRouter);
 app.use('/users', usersRouter);
+app.use('/accounts', accountsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
