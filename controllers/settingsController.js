@@ -33,13 +33,13 @@ exports.post_users_create = function(req,res) {
       role: req.body.role
   }); 
   
-  newFood.save(function (err) {
+  newUser.save(function (err) {
       if (err) {
           // handle error 
           console.error(err);       
       } else {            
           // saved!
-          res.redirect('./users');
+          res.redirect('/users');
       }    
   });
 

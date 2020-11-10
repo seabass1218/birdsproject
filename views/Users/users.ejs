@@ -11,10 +11,18 @@
      
         <a href="/settings/users/create" class="btn btn-primary">+ Create User</a>
 
-        <h2>Display users here</h2>
+        <P>place Users here</P>
        
        </div>
 
     <% include ../partials/scripts %>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#usersTable').DataTable({
+          responsive: true
+        });
+      });
+    </script>
   </body>
 </html>
