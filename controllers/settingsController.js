@@ -23,6 +23,28 @@ exports.get_users_create = function(req, res) {
     res.render('./users/createUsers', { title: 'users' });
 }
 
+exports.post_users_create = function(req,res) {
+
+  let newUser = new newUser({ 
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      role: req.body.role
+  }); 
+  
+  newFood.save(function (err) {
+      if (err) {
+          // handle error 
+          console.error(err);       
+      } else {            
+          // saved!
+          res.redirect('./users');
+      }    
+  });
+
+}
+
 exports.get_food = function(req, res) {
     Food.find({}, function(err, foods) {
         if (err) {
