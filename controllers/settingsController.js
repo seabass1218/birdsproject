@@ -114,7 +114,7 @@ exports.get_food_update = function(req, res) {
         // handle error
         console.log(err);
       } else {
-        res.redirect('./food');
+        res.redirect('./');
       }
     });
   };
@@ -135,12 +135,12 @@ exports.get_food_update = function(req, res) {
       name: req.body.Medicine
     };
   
-    Animal.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
+    Medicine.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
       if (err) {
         // handle error
         console.log(err);
       } else {
-        res.redirect('./meds');
+        res.redirect('./');
       }
     });
   };
