@@ -1,5 +1,6 @@
 const Food = require('../models/food');
 const Medicine = require('../models/medicine');
+const User = require('../models/user');
 
 exports.get_settings_index = function (req, res) {
     res.render('settings', { title: 'Settings' });
@@ -25,7 +26,7 @@ exports.get_users_create = function(req, res) {
 
 exports.post_users_create = function(req,res) {
 
-  let newUser = new newUser({ 
+  let newUser = new User({ 
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,

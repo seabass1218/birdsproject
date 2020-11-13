@@ -20,7 +20,7 @@ router.get('/meds/delete', settingsController.get_meds_delete);
 
 router.get('/users/create', settingsController.get_users_create);
 
-router.post('/users/createUsers', settingsController.post_users_create);
+router.post('/users', settingsController.post_users_create);
 
 router.get('/food', settingsController.get_food);
 
