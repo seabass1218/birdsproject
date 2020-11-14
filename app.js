@@ -23,6 +23,9 @@ require('dotenv').config({path: __dirname + '/.env'});
 const app = express()
 
 mongoose.connect(process.env['DATABASE'], {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
