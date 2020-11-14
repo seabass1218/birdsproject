@@ -1,15 +1,11 @@
 const User = require('../models/user');
 
-exports.get_index = function (req, res) {
-    res.render('index', { title: 'Home' });
-}
-
 exports.get_users = function (req, res) {
     User.find({}, function (err, user) {
         if (err) {
             console.error(err);
         } else {
-            res.render('./users', { data: user });
+            res.render('./users/users', { data: user });
         }
     })
 
@@ -45,7 +41,7 @@ exports.get_users_update = function (req, res) {
         if (err) {
             //handle error
         } else {
-            res.render('users/update', { data: user });
+            res.render('./users/updateUsers', { data: user });
         }
     });
 }
@@ -64,6 +60,17 @@ exports.post_users_update = function(req, res) {
     }
   
     User.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
+      if (err) {
+        // handle error
+        console.log(err);
+      } else {
+        res.redirect('/users');
+      }
+    });
+  };
+
+  exports.get_users_delete = function(req, res) {
+    User.findOneAndDelete({_id: req.query.id}, function(err) {
       if (err) {
         // handle error
         console.log(err);
