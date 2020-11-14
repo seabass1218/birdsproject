@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var birdsController = require('../controllers/birdsController');
+const authMiddleware = require('../middleware/ensureAuthenticated');
 
 /* GET home page. */
 router.get('/', birdsController.get_index);

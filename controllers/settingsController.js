@@ -1,6 +1,5 @@
 const Food = require('../models/food');
 const Medicine = require('../models/medicine');
-const User = require('../models/user');
 
 exports.get_settings_index = function (req, res) {
     res.render('settings', { title: 'Settings' });
@@ -18,32 +17,6 @@ exports.get_meds = function (req, res) {
 
 exports.get_meds_create = function(req, res) {
     res.render('./medicine/createMeds', { title: 'meds create' });
-}
-
-exports.get_users_create = function(req, res) {
-    res.render('./users/createUsers', { title: 'users' });
-}
-
-exports.post_users_create = function(req,res) {
-
-  let newUser = new User({ 
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      role: req.body.role
-  }); 
-  
-  newUser.save(function (err) {
-      if (err) {
-          // handle error 
-          console.error(err);       
-      } else {            
-          // saved!
-          res.redirect('/users');
-      }    
-  });
-
 }
 
 exports.get_food = function(req, res) {
