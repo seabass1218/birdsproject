@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<%- include('../partials/header', {title: 'Animals'}); %>
+
+<body>
+  <% include ../partials/navbar %>
+
+  <div class="container">
+    <h1>Feedings</h1>
+
+    <div class="my-3">
+        <a href="/feedings/create" class="btn btn-primary">+ Add Feeding</a>
+        <a href="/feedings/export" class="btn btn-primary">Export</a>
+    </div>
+
+    <table class="table table-bordered table-striped table-responsive" id="animalTable">
+        <thead>
+            <tr>
+                <td>Date</td>
+                <td>Animal</td>
+                <td>Food</td>
+                <td>Medicine</td>
+                <td>Goal Weight</td>
+                <td>Actual Weight</td>
+                <td>Amount Fed</td>
+                <td>Leftover</td>
+                <td>Keeper</td>
+                <td>Weather Conditions</td>
+                <td>Comments</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <% for(var i=0; i<data.length; i++) { %>
+            <tr>
+                <td><%= data[i].dateTime.toLocaleDateString("en-US") %></td>
+                <td><%= data[i].animalNickName %> (<%= data[i].animalSpecies %>)</td>
+                <td><%= data[i].food %></td>
+                <td><%= data[i].medicine %></td>
+                <td><%= data[i].goalWeightOfAnimal %>g</td>
+                <td><%= data[i].actualWeightOfAnimal %>g</td>
+                <td><%= data[i].amountOfFoodFed %>g</td>
+                <td><%= data[i].leftoverFood %>g</td>                
+                <td><%= data[i].keeperName %></td>
+                <td><%= data[i].weatherConditions %></td>
+                <td><%= data[i].comments %></td>
+                <td><a href="/feedings/update?id=<%=data[i]._id%>">Update</a> 
+                    | <a href="/feedings/delete?id=<%=data[i]._id%>">Delete</a></td>
+            </tr>
+        <% } %>
+    </table>
+
+  </div>
+  
+  <% include ../partials/scripts %>
+
+  <script type="text/javascript">
+    $(document).ready( function () {
+        $('#animalTable').DataTable({  
+            responsive: true,
+            //order: [[ 0, "ascending" ]]
+        });
+    });
+   </script>
+</body>
+
+</html>
