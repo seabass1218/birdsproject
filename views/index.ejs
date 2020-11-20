@@ -8,12 +8,11 @@
     <div class="container">
 
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to the PSU Nature Reach Feeding Application.</p>
     <% if (locals.user) { %>
-    <p>Hello <%= locals.user.firstName %></p>
+    <p>Hello, <%= locals.user.firstName %>.</p>
     <%}%>
     
-    <p>This is where We will Track Feedings!</p>
   </div>
 
     <% include ./partials/scripts %>

@@ -37,7 +37,7 @@ exports.post_birds_create = function(req,res) {
             console.log(err);       
         } else {            
             // saved!
-            res.redirect('/birds');        
+            res.redirect('/animals');        
         }    
     });
 
@@ -71,7 +71,7 @@ exports.get_update = function(req, res) {
         // handle error
         console.log(err);
       } else {
-        res.redirect('/birds');
+        res.redirect('/animals');
       }
     });
   };
@@ -82,7 +82,7 @@ exports.get_update = function(req, res) {
         // handle error
         console.log(err);
       } else {
-        res.redirect('/birds');
+        res.redirect('/animals');
       }
     });
   };
