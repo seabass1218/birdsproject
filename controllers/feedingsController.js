@@ -18,7 +18,7 @@ exports.get_export = async function(req, res) {
   worksheet.columns = [
     {header: 'Date', key: 'dateTime', width: 20},
     {header: 'Species', key: 'animalSpecies', width: 10},
-    {header: 'Nickname', key: 'animalNickName:', width: 10},
+    {header: 'Nickname', key: 'animalNickName', width: 10},
     {header: 'Food', key: 'food', width: 10},
     {header: 'Medicine', key: 'medicine', width: 10},
     {header: 'Goal Weight', key: 'goalWeightOfAnimal', width: 10},

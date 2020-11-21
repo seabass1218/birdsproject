@@ -8,13 +8,14 @@
     <div class="container">
 
     <h1><%= title %></h1>
+    
     <p>Welcome to the PSU Nature Reach Feeding Application.</p>
     <% if (locals.user) { %>
     <p>Hello, <%= locals.user.firstName %>.</p>
     <%}%>
-    
+    <img src="https://www.pittstate.edu/biology/_files/images/nature-reach/nature-reach-logo-480x284.jpg" alt="" >
   </div>
-
+  
     <% include ./partials/scripts %>
   </body>
 </html>
