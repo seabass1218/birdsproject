@@ -21,9 +21,15 @@
         <select required class="form-control" name="animalId">
             <option></option>
             <% for(var i=0; i<animals.length; i++) { %>
+              <% if (animals[i].nickName == data.animalNickName) { %>
+                <option value="<%=animals[i]._id%>" selected>
+                    <%=animals[i].species%> - <%=animals[i].nickName%>
+                </option>
+              <% } else { %>
                 <option value="<%=animals[i]._id%>">
                     <%=animals[i].species%> - <%=animals[i].nickName%>
                 </option>
+              <% } %>
             <% } %>
         </select>
       </div>
@@ -58,7 +64,7 @@
       </div>
 
       <div class="form-group">
-        <label for="actualWeightOfAnimal">Actual Weigh (grams)</label>
+        <label for="actualWeightOfAnimal">Actual Weight (grams)</label>
         <input type="number" required class="form-control" id="actualWeightOfAnimal" placeholder="Enter actual weight" name="actualWeightOfAnimal" value="<%=data.actualWeightOfAnimal%>">
       </div>
 
