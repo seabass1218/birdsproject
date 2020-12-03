@@ -21,9 +21,15 @@
         <select required class="form-control" name="animalId">
             <option></option>
             <% for(var i=0; i<animals.length; i++) { %>
+              <% if (animals[i].nickName == data.animalNickName) { %>
+                <option value="<%=animals[i]._id%>" selected>
+                    <%=animals[i].species%> - <%=animals[i].nickName%>
+                </option>
+              <% } else { %>
                 <option value="<%=animals[i]._id%>">
                     <%=animals[i].species%> - <%=animals[i].nickName%>
                 </option>
+              <% } %>
             <% } %>
         </select>
       </div>
