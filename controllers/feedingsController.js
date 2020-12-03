@@ -80,37 +80,40 @@ exports.post_create = async function(req, res) {
   });
 };
 
-exports.get_update = function(req, res) {
-  //   Animal.findOne({_id: req.query.id}, function(err, animal) {
-  //     if (err) {
-  //       // handle error
-  //     } else {
-  //       console.log(animal);
-  //       res.render('settings/animals/update', {data: animal});
-  //     }
-  //   });
+exports.get_update = async function(req, res) {
+  const animals = await Animal.find({enabled: true});
+  const foods = await Food.find({});
+  const medicines = await Medicine.find({});
+  
+  Feeding.findOne({_id: req.query.id}, function(err, feedings) {
+    if (err) {
+      // handle error
+    } else {
+      res.render('feedings/update', {data: feedings, animals: animals, foods: foods, medicines: medicines});
+    }
+  });
 };
 
 exports.post_update = function(req, res) {
-  //   let enabled = false;
-  //   if (req.body.enabled == 'on') {
-  //     enabled = true;
-  //   }
+  const updateData = {
+    date: req.body.date,
+    food: req.body.food,
+    medicine: req.body.medicine,
+    goalWeightOfAnimal: req.body.goalWeightOfAnimal,
+    actualWeightOfAnimal: req.body.actualWeightOfAnimal,
+    amountOfFoodFed: req.body.amountOfFood,
+    leftoverFood: req.body.leftoverFood,
+    comments: req.body.comments
+  };
 
-  //   const updateData = {
-  //     enabled: enabled,
-  //     nickName: req.body.nickName,
-  //     species: req.body.species,
-  //   };
-
-  //   Animal.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
-  //     if (err) {
-  //       // handle error
-  //       console.log(err);
-  //     } else {
-  //       res.redirect('/settings/animals');
-  //     }
-  //   });
+  Feeding.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
+    if (err) {
+      // handle error
+      console.log(err);
+    } else {
+      res.redirect('/feedings');
+    }
+  });
 };
 
 exports.get_delete = function(req, res) {
