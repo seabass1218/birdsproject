@@ -98,10 +98,10 @@ exports.post_update = function(req, res) {
   const updateData = {
     date: req.body.date,
     food: req.body.food,
-    medicine: req.body.Medicine,
+    medicine: req.body.medicine,
     goalWeightOfAnimal: req.body.goalWeightOfAnimal,
     actualWeightOfAnimal: req.body.actualWeightOfAnimal,
-    amountOfFoodFed: req.body.amountOfFoodFed,
+    amountOfFoodFed: req.body.amountOfFood,
     leftoverFood: req.body.leftoverFood,
     comments: req.body.comments
   };
@@ -111,7 +111,7 @@ exports.post_update = function(req, res) {
       // handle error
       console.log(err);
     } else {
-      res.redirect('./');
+      res.redirect('/feedings');
     }
   });
 };

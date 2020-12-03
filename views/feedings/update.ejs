@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 <html>
 <%- include('../partials/header', {title: 'Feedings'}); %>
@@ -7,96 +6,149 @@
   <% include ../partials/navbar %>
 
   <div class="container">
-    <form action="/feedings/create" method="POST" class="col-12">
-        <input type="hidden" name="id" value="<%=data._id%>" />
+    <form action="/feedings/update" method="POST" class="col-12">
+      <input type="hidden" name="id" value="<%=data._id%>" />
       <h1>Update Feeding</h1>
-      
+
       <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" required class="form-control" id="date" placeholder="Enter date" name="date" value="<%= data.dateTime %>">
+        <input type="date" required class="form-control" id="date" placeholder="Enter date" name="date"
+          value="<%=data.dateTime%>">
       </div>
 
       <div class="form-group">
         <label for="animalId">Animal</label>
         <select required class="form-control" name="animalId">
-            <option></option>
-            <% for(var i=0; i<animals.length; i++) { %>
-              <% if (animals[i].nickName == data.animalNickName) { %>
-                <option value="<%=animals[i]._id%>" selected>
-                    <%=animals[i].species%> - <%=animals[i].nickName%>
-                </option>
-              <% } else { %>
-                <option value="<%=animals[i]._id%>">
-                    <%=animals[i].species%> - <%=animals[i].nickName%>
-                </option>
-              <% } %>
-            <% } %>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <label for="food">Food</label>
-        <select required class="form-control" name="food" value="<%=data.food%>">
-            <option></option>
-            <% for(var i=0; i<foods.length; i++) { %>
-                <option value="<%=foods[i].name%>">
-                    <%=foods[i].name%>
-                </option>
-            <% } %>
+          <option></option>
+          <% for(var i=0; i<animals.length; i++) { %>
+          <% if (animals[i].nickName == data.animalNickName) { %>
+          <option value="<%=animals[i]._id%>" selected>
+            <%=animals[i].species%> - <%=animals[i].nickName%>
+          </option>
+          <% } else { %>
+          <option value="<%=animals[i]._id%>">
+            <%=animals[i].species%> - <%=animals[i].nickName%>
+          </option>
+          <% } %>
+          <% } %>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="medicine">Medicine (Optional)</label>
-        <select class="form-control" name="medicine" value="<%=data.medicine%>">
-            <option></option>
-            <% for(var i=0; i<medicines.length; i++) { %>
-                <option value="<%=medicines[i].name%>">
-                    <%=medicines[i].name%>
-                </option>
-            <% } %>
+        <label for="food">Food</label>
+        <select required class="form-control" name="food">
+          <option></option>
+          <% for(var i=0; i<foods.length; i++) { %>
+          <% if (foods[i].name == data.food) { %>
+          <option value="<%=foods[i].name%>" selected>
+            <%=foods[i].name%>
+          </option>
+          <% } else { %>
+          <option value="<%=foods[i].name%>">
+            <%=foods[i].name%>
+          </option>
+          <% } %>
+          <% } %>
         </select>
       </div>
-      
+
+      <div class=" form-group">
+        <label for="medicine">Medicine (Optional)</label>
+        <select class="form-control" name="medicine">
+          <option></option>
+          <% for(var i=0; i<medicines.length; i++) { %>
+          <% if (medicines[i].name == data.medicine) { %>
+          <option value="<%=medicines[i].name%>" selected>
+            <%=medicines[i].name%>
+          </option>
+          <% } else { %>
+          <option value="<%=medicines[i].name%>">
+            <%=medicines[i].name%>
+          </option>
+          <% } %>
+          <% } %>
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="goalWeightOfAnimal">Goal Weight (grams)</label>
-        <input type="number" required class="form-control" id="goalWeightOfAnimal" placeholder="Enter goal weight" name="goalWeightOfAnimal" value="<%=data.goalWeightOfAnimal%>">
+        <input type="number" required class="form-control" id="goalWeightOfAnimal" placeholder="Enter goal weight"
+          name="goalWeightOfAnimal" value="<%=data.goalWeightOfAnimal%>">
       </div>
 
       <div class="form-group">
         <label for="actualWeightOfAnimal">Actual Weight (grams)</label>
-        <input type="number" required class="form-control" id="actualWeightOfAnimal" placeholder="Enter actual weight" name="actualWeightOfAnimal" value="<%=data.actualWeightOfAnimal%>">
+        <input type="number" required class="form-control" id="actualWeightOfAnimal" placeholder="Enter actual weight"
+          name="actualWeightOfAnimal" value="<%=data.actualWeightOfAnimal%>">
       </div>
 
       <div class="form-group">
         <label for="amountOfFood">Amount Fed (grams)</label>
-        <input type="number" required class="form-control" id="amountOfFood" placeholder="Enter amount fed" name="amountOfFood" value="<%=data.amountOfFoodFed%>">
+        <input type="number" required class="form-control" id="amountOfFood" placeholder="Enter amount fed"
+          name="amountOfFood" value="<%=data.amountOfFoodFed%>">
       </div>
 
       <div class="form-group">
         <label for="leftoverFood">Leftover Food (grams)</label>
-        <input type="number" required class="form-control" id="leftoverFood" placeholder="Enter leftover food" name="leftoverFood" value="<%=data.leftoverFood%>">
+        <input type="number" required class="form-control" id="leftoverFood" placeholder="Enter leftover food"
+          name="leftoverFood" value="<%=data.leftoverFood%>">
       </div>
 
       <div class="form-group">
         <label for="weatherConditions">Weather Conditions</label>
-        <select class="form-control" name="weatherConditions" value="<%=data.weatherConditions%>">
-            <option></option>
-            <option>Sunny - Cold</option>
-            <option>Cloudy - Cold</option>
-            <option>Precipitation - Cold</option>
-            <option>Sunny - Mild</option>
-            <option>Cloudy - Mild</option>
-            <option>Precipitation - Mild</option>
-            <option>Sunny - Hot</option>
-            <option>Cloudy - Hot</option>
-            <option>Precipitation - Hot</option>
+        <select class="form-control" name="weatherConditions">
+          <option></option>
+          <% if (data.weatherConditions == "Sunny - Cold") { %>
+          <option selected>Sunny - Cold</option>
+          <% } else { %>
+          <option>Sunny - Cold</option>
+          <% } %>
+          <% if (data.weatherConditions == "Cloudy - Cold") { %>
+          <option selected>Cloudy - Cold</option>
+          <% } else { %>
+          <option>Cloudy - Cold</option>
+          <% } %>
+          <% if (data.weatherConditions == "Precipitation - Cold") { %>
+          <option selected>Precipitation - Cold</option>
+          <%} else {%>
+          <option>Precipitation - Cold</option>
+          <% } %>
+          <% if (data.weatherConditions == "Sunny - Mild") { %>
+          <option selected>Sunny - Mild</option>
+          <%} else {%>
+          <option>Sunny - Mild</option>
+          <% } %>
+          <% if (data.weatherConditions == "Cloudy - Mild") { %>
+          <option selected>Cloudy - Mild</option>
+          <%} else {%>
+          <option>Cloudy - Mild</option>
+          <% } %>
+          <% if (data.weatherConditions == "Precipitation - Mild") { %>
+          <option selected>Precipitation - Mild</option>
+          <%} else {%>
+          <option>Precipitation - Mild</option>
+          <% } %>
+          <% if (data.weatherConditions == "Sunny - Hot") { %>
+          <option selected>Sunny - Hot</option>
+          <%} else {%>
+          <option>Sunny - Hot</option>
+          <% } %>
+          <% if (data.weatherConditions == "Cloudy - Hot") { %>
+          <option selected>Cloudy - Hot</option>
+          <%} else {%>
+          <option>Cloudy - Hot</option>
+          <% } %>
+          <% if (data.weatherConditions == "Precipitation - Hot") { %>
+          <option selected>Precipitation - Hot</option>
+          <%} else {%>
+          <option>Precipitation - Hot</option>
+          <% } %>
         </select>
       </div>
 
       <div class="form-group">
         <label for="comments">Comments</label>
-        <textarea class="form-control" id="comments" name="comments" value="<%=data.comments%>"></textarea>
+        <textarea class="form-control" id="comments" name="comments"> <%=data.comments%> </textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
