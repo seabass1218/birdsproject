@@ -8,6 +8,8 @@ router.get('/', authMiddleware.ensureAuthenticated, feedingsController.get_index
 
 router.get('/export', authMiddleware.ensureAuthenticated, feedingsController.get_export);
 
+router.get('/export/submit', authMiddleware.ensureAuthenticated, feedingsController.get_export_submit);
+
 router.get('/create', authMiddleware.ensureAuthenticated, feedingsController.get_create);
 
 router.post('/create', authMiddleware.ensureAuthenticated, feedingsController.post_create);
