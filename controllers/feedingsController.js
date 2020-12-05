@@ -109,16 +109,22 @@ exports.get_update = async function(req, res) {
   });
 };
 
-exports.post_update = function(req, res) {
+exports.post_update = async function(req, res) {
+  const animal = await Animal.findOne({_id: req.body.animalId});
+
   const updateData = {
-    date: req.body.date,
+    animalSpecies: animal.species,
+    animalNickName: animal.nickName,
     food: req.body.food,
     medicine: req.body.medicine,
     goalWeightOfAnimal: req.body.goalWeightOfAnimal,
     actualWeightOfAnimal: req.body.actualWeightOfAnimal,
     amountOfFoodFed: req.body.amountOfFood,
     leftoverFood: req.body.leftoverFood,
-    comments: req.body.comments
+    comments: req.body.comments,
+    weatherConditions: req.body.weatherConditions,
+    dateTime: req.body.date,
+    keeperName: res.locals.user.firstName + ' ' + res.locals.user.lastName,
   };
 
   Feeding.findOneAndUpdate({_id: req.body.id}, updateData, function(err, data) {
