@@ -13,6 +13,19 @@ exports.get_index = async function(req, res) {
 exports.get_export = async function(req, res) {
   const feedings = await Feeding.find({}).sort({dateTime: 'desc'});
 
+  res.render('feedings/export', {data: feedings});
+};
+
+exports.get_export_submit = async function(req, res) {
+  let {startDate, endDate} = req.query;
+
+  const feedings = await Feeding.find({
+    dateTime: 
+    { $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
+      $lt: new Date(new Date(endDate).setHours(23, 59, 59))
+    }
+  }).sort({dateTime: 'desc'});
+
   const workbook = new excel.Workbook();
   const worksheet = workbook.addWorksheet('Feedings');
   worksheet.columns = [
@@ -79,6 +92,8 @@ exports.post_create = async function(req, res) {
     }
   });
 };
+
+
 
 exports.get_update = async function(req, res) {
   const animals = await Animal.find({enabled: true});
