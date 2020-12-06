@@ -12,16 +12,30 @@
 
     <% include ./partials/scripts %>
 
-   <h1> <a href="/users" class="btn btn-outline-primary">Users</a>
-    <div>
-      <a href="/animals" class="btn btn-outline-primary">Animals</a>
-  </div>
-    <div>
-        <a href="settings/meds" class="btn btn-outline-primary">Meds</a>
-    </div>
-    <div>
-        <a href="settings/food" class="btn btn-outline-primary">Food Types</a>
-    </div>
-  </div>
-  </body>
-</html>
+    <% if (locals.user.role === "Admin") { %>
+      <h1> <a href="/users" class="btn btn-outline-primary">Users</a>
+       <div>
+         <a href="/animals" class="btn btn-outline-primary">Animals</a>
+     </div>
+       <div>
+           <a href="settings/meds" class="btn btn-outline-primary">Meds</a>
+       </div>
+       <div>
+           <a href="settings/food" class="btn btn-outline-primary">Food Types</a>
+       </div>
+     </div>
+     </body>
+     <%} else { %>
+       <div>
+         <a href="/animals" class="btn btn-outline-primary">Animals</a>
+     </div>
+       <div>
+           <a href="settings/meds" class="btn btn-outline-primary">Meds</a>
+       </div>
+       <div>
+           <a href="settings/food" class="btn btn-outline-primary">Food Types</a>
+       </div>
+     </div>
+     </body>
+     <% } %>
+   
