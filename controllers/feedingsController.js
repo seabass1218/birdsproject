@@ -22,7 +22,7 @@ exports.get_export_submit = async function(req, res) {
   let feedings = await Feeding.find({
     dateTime: 
     { $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
-      $lt: new Date(new Date(endDate).setHours(23, 59, 59))
+      $lte: new Date(new Date(endDate).setHours(23, 59, 59))
     }
   }).sort({dateTime: 'desc'});
 
@@ -49,15 +49,15 @@ exports.get_export_submit = async function(req, res) {
   const workbook = new excel.Workbook();
   const worksheet = workbook.addWorksheet('Feedings');
   worksheet.columns = [
-    {header: 'Date', key: 'displayDate', width: 20},
+    {header: 'Date', key: 'displayDate', width: 25},
     {header: 'Species', key: 'animalSpecies', width: 10},
     {header: 'Nickname', key: 'animalNickName', width: 10},
     {header: 'Food', key: 'food', width: 10},
     {header: 'Medicine', key: 'medicine', width: 10},
-    {header: 'Goal Weight', key: 'goalWeightOfAnimal', width: 10},
-    {header: 'Actual Weight', key: 'actualWeightOfAnimal', width: 10},
-    {header: 'Amount Fed', key: 'amountOfFoodFed', width: 10},
-    {header: 'Leftover Food', key: 'leftoverFood', width: 10},
+    {header: 'Goal Weight', key: 'goalWeightOfAnimal', width: 12},
+    {header: 'Actual Weight', key: 'actualWeightOfAnimal', width: 15},
+    {header: 'Amount Fed', key: 'amountOfFoodFed', width: 12},
+    {header: 'Leftover Food', key: 'leftoverFood', width: 13},
     {header: 'Weather Conditions', key: 'weatherConditions', width: 20},
     {header: 'Comments', key: 'comments', width: 50},
   ];
@@ -75,6 +75,7 @@ exports.get_export_submit = async function(req, res) {
   return workbook.xlsx.write(res).then(function() {
     res.status(200).end();
   });
+
 };
 
 exports.get_create = async function(req, res) {
