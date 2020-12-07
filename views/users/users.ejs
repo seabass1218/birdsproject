@@ -8,6 +8,7 @@
 <body>
   <% include ../partials/navbar %>
 
+  <% if (locals.user.role === "Admin") { %>
   <div class="container">
     <h1>Users Page</h1>
 
@@ -50,6 +51,11 @@
       });
     });
   </script>
+  <%} else { %>
+    <p style="padding-left: 200px"> Access denied: You do not have permission to access users.</p>
+    <% } %>
 </body>
+
+
 
 </html>
