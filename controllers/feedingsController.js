@@ -19,17 +19,37 @@ exports.get_export = async function(req, res) {
 exports.get_export_submit = async function(req, res) {
   let {startDate, endDate} = req.query;
 
-  const feedings = await Feeding.find({
+  let feedings = await Feeding.find({
     dateTime: 
     { $gte: new Date(new Date(startDate).setHours(00, 00, 00)),
       $lt: new Date(new Date(endDate).setHours(23, 59, 59))
     }
   }).sort({dateTime: 'desc'});
 
+  // fix timezones -- convert to central 
+  let displayFeedings = [];
+  for (let i=0; i<feedings.length; i++) {
+    displayFeedings.push({
+      displayDate: feedings[i].dateTime.toLocaleString("en-US", {timeZone: 'America/Chicago'}),
+      animalSpecies: feedings[i].animalSpecies,
+      animalNickName: feedings[i].animalNickName,
+      food: feedings[i].food,
+      medicine: feedings[i].medicine,
+      goalWeightOfAnimal: feedings[i].goalWeightOfAnimal,
+      actualWeightOfAnimal: feedings[i].actualWeightOfAnimal,
+      amountOfFoodFed: feedings[i].amountOfFoodFed,
+      leftoverFood: feedings[i].leftoverFood,
+      weatherConditions: feedings[i].weatherConditions,
+      comments: feedings[i].comments
+    })
+  }
+
+  console.log (displayFeedings);
+
   const workbook = new excel.Workbook();
   const worksheet = workbook.addWorksheet('Feedings');
   worksheet.columns = [
-    {header: 'Date', key: 'dateTime', width: 20},
+    {header: 'Date', key: 'displayDate', width: 20},
     {header: 'Species', key: 'animalSpecies', width: 10},
     {header: 'Nickname', key: 'animalNickName', width: 10},
     {header: 'Food', key: 'food', width: 10},
@@ -42,7 +62,7 @@ exports.get_export_submit = async function(req, res) {
     {header: 'Comments', key: 'comments', width: 50},
   ];
 
-  worksheet.addRows(feedings);
+  worksheet.addRows(displayFeedings);
 
   res.setHeader(
       'Content-Type',
